@@ -1,0 +1,11 @@
+<!-- alerts came from custom middleware -->
+<% if (alerts.error) { %>
+    <% alerts.error.forEach(msg => { %>
+      <%= msg %>
+    <% }) %>
+<% } %>
+<% if (alerts.success) { %>
+    <% alerts.success.forEach(msg => { %>
+        <%= msg %>
+    <% }) %>
+<% } %>

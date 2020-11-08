@@ -7,7 +7,8 @@ const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const axios = require('axios')
-let db = require('./models')
+let db = require('./models');
+
 
 //setup ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -119,13 +120,24 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
                })
         .then(journal=>{
             res.render('journal', {location: location, journal:journal})
-        })
+    })
+    let deleteTitle = req.query.title
+    let deleteContent = req.query.content
+    db.journal.destroy({
+         where: {
+                userId: req.user.id,
+                title: deleteTitle,
+                content: deleteContent
+        }
+    }).then(numRowsDeleted=>{
+        console.log('Rows Deleted:', numRowsDeleted)
+        res.redirect('/profile/journal')
     })
         .catch(err=>{
             console.log('ERROR HERE:', err)
         })
     })
-
+})
    
 ///////////////POST JOURNAL ENTRIES ROUTE/////////////////
 // app.post('/profile/journal', isLoggedIn, (req, res) => {
@@ -143,14 +155,22 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
 //     })
 //   })
 app.post('/profile/journal', isLoggedIn, (req, res) => {
-    db.journal.create({
-      userId: req.user.id,
-      //location id?
-      title: req.body.title,
-      content: req.body.content
+    console.log('!!!!!!!!!!!!!!!!!!!!!', req.body.title)
+    db.location.findOrCreate({
+      where: {
+          userId: req.user.id,
+          latitude: req.body.location, //not sure about this
+      }
     })
-    .then((post) => {
-      res.redirect('/profile/journal')
+    .then(function([location, created]) {
+        db.journal.create({
+            title: req.body.title, content: req.body.content, userId: req.user.id
+        }).then(function([journal, created]){
+            location.addJournal(journal).then(function(relationInfo) {
+                console.log(journal.title, 'added to', location.latitude)
+            })
+        })
+        res.redirect('/profile/journal')
     })
     .catch((error) => {
         console.log('error posting journal to database', error)

@@ -2,10 +2,10 @@
 <h3>Create a New Entry</h3>
 <form action="/profile/journal" method="POST">
     <!-- <div class="form-group"> -->
-      <label for="location">Choose a Favorited Location:</label>
-      <select name='location' id='location'>
+      <label>Choose a Favorited Location:</label>
+      <select name='location'>
       <% location.forEach(element=>{ %>
-        <option value=<%element.latitude%>><%=element.latitude%></option>
+        <option value='<%element.latitude%>'><%=element.latitude%></option>
       <% }) %>
     </select>
     <label for="title">Journal Title</label>
@@ -13,7 +13,7 @@
     <label for="content">Entry</label>
     <input type="text" id="content" name="content">
     <input hidden type="text" name="userId" value="<%=   %>">
-    <input hidden type="text" name="locationId" value="<%=   %>">
+    <input hidden type="text" name="locationId" value="">
     <input type="submit" class="btn btn-primary">
   </form>
 
@@ -24,5 +24,11 @@
 <% journal.forEach(entry=>{ %>
     <li><%=entry.title%></li>
     <li><%=entry.content%></li>
+    <form method="DELETE" action="/profile/journal">
+    <input hidden type="text" name="title" value="<%= entry.title %>">
+    <input hidden type="text" name="content" value="<%= entry.content %>">
+    <button class="btn" type="submit">Delete Journal Entry</button>
+    </form>
+
 <% }) %>
 </ul>

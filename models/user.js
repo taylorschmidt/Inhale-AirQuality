@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       models.user.hasMany(models.location)
+      models.user.hasMany(models.journal)
     }
   };
   user.init({

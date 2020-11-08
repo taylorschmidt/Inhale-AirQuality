@@ -1,1 +1,20 @@
 <h2><%= currentUser.name %>'s Profile</h2>
+
+<h2>Favorites List</h2>
+<ul>
+    <% favorites.forEach(favorite => { %>
+        <li><%= favorite.latitude %> , <%= favorite.longitude %>
+        <!-- journal form -->
+        
+        <!-- delete form -->
+        <form method="DELETE" action="/profile">
+        <input hidden type="number" name="latitude" value="<%= favorite.latitude %>">
+        <input hidden type="number" name="longitude" value="<%= favorite.longitude %>">
+        <button class="btn" type="submit">Delete Location</button>
+        </form>
+        
+        </li>
+    <% }) %>
+</ul>
+
+<a href="/profile/journal">My Journal</a>

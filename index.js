@@ -7,6 +7,7 @@ const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const axios = require('axios')
+let db = require('./models')
 
 //setup ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -41,32 +42,123 @@ app.use((req,res,next)=>{
 //controllers middleware that make controllers folder work
 app.use('/auth', require('./controllers/auth.js'))
 
+//////////////////////HOME ROUTE/////////////////////
 app.get('/', (req,res)=> {
 res.render('home')
 })
 
-//show route with axios api
+//////////////////////SHOW ROUTE - AXIOS/////////////////////////
 app.get('/show', (req,res)=> {
-    console.log(req.query.long)
+    console.log('HERE ARE PARAMS', req.params)
     let searchLat = req.query.lat 
     let searchLong = req.query.long 
-    axios.get(`https://api.breezometer.com/air-quality/v2/current-conditions?lat=${searchLat}&lon=${searchLong}&key=74bb9e59084046568b581405e452edb7&features=breezometer_aqi,local_aqi,health_recommendations,sources_and_effects,pollutants_concentrations,pollutants_aqi_information`)
+    axios.get(`https://api.breezometer.com/air-quality/v2/current-conditions?lat=${searchLat}&lon=${searchLong}&key=74bb9e59084046568b581405e452edb7&features=breezometer_aqi,local_aqi,health_recommendations,sources_and_effects,pollutants_concentrations,pollutants_aqi_information&metadata=true`)
     .then((response)=>{
-        let aqi = response.data.data.indexes.baqi.aqi
-        res.render('show', {aqi: aqi})
-
-
-        // res.send(response.data)
+        let data = response.data
+        res.render('show', {data: data, searchLat:searchLat, searchLong:searchLong})
+    
     })
     .catch(err=>{
         console.log('API error:', err)
     })
 })
 
+/////////////////////PROFILE ROUTE////////////////////////
 app.get('/profile', isLoggedIn, (req, res)=>{
-    res.render('profile')
+    db.location.findAll({
+        where: {
+            userId: req.user.id
+        }
+    })
+    .then(favorites => {
+        res.render('profile.ejs', {favorites: favorites});
+      })
+    let deleteLat = req.query.latitude
+    let deleteLong = req.query.longitude
+    db.location.destroy({
+        where: {
+            userId: req.user.id,
+            latitude: deleteLat,
+            longitude: deleteLong
+        }
+    }).then(numRowsDeleted=>{
+        console.log('Rows Deleted:', numRowsDeleted)
+    })
 })
 
+ 
+///////////////POST FAVORITE LOCATIONS ROUTE/////////////////
+app.post('/profile', isLoggedIn, (req, res) => {
+    db.location.create({
+      userId: req.user.id,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
+    })
+    .then((post) => {
+      res.redirect('/profile')
+    })
+    .catch((error) => {
+        console.log('error posting to database', error)
+    })
+  })
+
+
+///////////JOURNAL ROUTE//////////////
+app.get('/profile/journal', isLoggedIn, (req, res)=>{
+        db.location.findAll({
+            where: {
+                userId: req.user.id
+            }
+        })
+        .then(location=>{
+            db.journal.findAll({
+                where: {
+                    userId: req.user.id
+                   },
+                include: [db.location]
+               })
+        .then(journal=>{
+            res.render('journal', {location: location, journal:journal})
+        })
+    })
+        .catch(err=>{
+            console.log('ERROR HERE:', err)
+        })
+    })
+
+   
+///////////////POST JOURNAL ENTRIES ROUTE/////////////////
+// app.post('/profile/journal', isLoggedIn, (req, res) => {
+//     db.journal.create({
+//       userId: req.user.id,
+//       //location id?
+//       title: req.body.title,
+//       content: req.body.content
+//     })
+//     .then((post) => {
+//       res.redirect('/profile/journal')
+//     })
+//     .catch((error) => {
+//         console.log('error posting journal to database', error)
+//     })
+//   })
+app.post('/profile/journal', isLoggedIn, (req, res) => {
+    db.journal.create({
+      userId: req.user.id,
+      //location id?
+      title: req.body.title,
+      content: req.body.content
+    })
+    .then((post) => {
+      res.redirect('/profile/journal')
+    })
+    .catch((error) => {
+        console.log('error posting journal to database', error)
+    })
+  })
+
+
+/////////////////PORT////////////////
 app.listen(3000, ()=>{
     console.log('listening at 3000!')
 })

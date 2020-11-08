@@ -1,3 +1,10 @@
 <h1>Information about searched location:</h1>
-<p>AQI: <%= aqi %></p>
+<p>AQI: <%= data.indexes %></p>
 
+<p>Add Location to Favorites Button:</p>
+<form method="POST" action="/profile">
+    <input hidden type="text" name="userId" value="<%=   %>">
+    <input hidden type="number" name="latitude" value="<%= searchLat  %>">
+    <input hidden type="number" name="longitude" value="<%= searchLong %>">
+    <button class="btn" type="submit">Add to Favorites</button>
+  </form>

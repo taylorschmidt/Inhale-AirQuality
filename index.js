@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const axios = require('axios')
 
 //setup ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -44,10 +45,28 @@ app.get('/', (req,res)=> {
 res.render('home')
 })
 
+//show route with axios api
+app.get('/show', (req,res)=> {
+    console.log(req.query.long)
+    let searchLat = req.query.lat 
+    let searchLong = req.query.long 
+    axios.get(`https://api.breezometer.com/air-quality/v2/current-conditions?lat=${searchLat}&lon=${searchLong}&key=74bb9e59084046568b581405e452edb7&features=breezometer_aqi,local_aqi,health_recommendations,sources_and_effects,pollutants_concentrations,pollutants_aqi_information`)
+    .then((response)=>{
+        let aqi = response.data.data.indexes.baqi.aqi
+        res.render('show', {aqi: aqi})
+
+
+        // res.send(response.data)
+    })
+    .catch(err=>{
+        console.log('API error:', err)
+    })
+})
+
 app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
 
-app.listen(2000, ()=>{
-    console.log('listening at 2000!')
+app.listen(3000, ()=>{
+    console.log('listening at 3000!')
 })

@@ -14,6 +14,9 @@ let db = require('./models');
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
+//set up style.css
+app.use(express.static('public'))
+
 //body parser middleware that makes req.body work
 app.use(express.urlencoded({extended:false}))
 
@@ -205,6 +208,6 @@ app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
 })
 
 /////////////////PORT////////////////
-app.listen(3000, ()=>{
-    console.log('listening at 3000!')
+app.listen(process.env.PORT, ()=>{
+    console.log('listening at port you chose!')
 })

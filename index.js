@@ -61,7 +61,7 @@ app.get('/show', (req,res)=> {
         axios.get(`https://api.breezometer.com/air-quality/v2/current-conditions?lat=${lat}&lon=${long}&key=74bb9e59084046568b581405e452edb7&features=breezometer_aqi,local_aqi,health_recommendations,sources_and_effects,pollutants_concentrations,pollutants_aqi_information&metadata=true`)
     .then((response)=>{
         let data = response.data
-        res.render('show', {data: data, lat:lat, long:long})
+        res.render('show', {data: data, lat:lat, long:long, searchZip:searchZip})
     })
     .catch(err=>{
         console.log('API error:', err)
@@ -98,8 +98,9 @@ app.get('/profile', isLoggedIn, (req, res)=>{
 app.post('/profile', isLoggedIn, (req, res) => {
     db.location.create({
       userId: req.user.id,
+      zip: req.body.zip,
       latitude: req.body.latitude,
-      longitude: req.body.longitude
+      longitude: req.body.longitude,
     })
     .then((post) => {
       res.redirect('/profile')
@@ -147,64 +148,25 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
 })
    
 ///////////////POST JOURNAL ENTRIES ROUTE/////////////////
-// app.post('/profile/journal', isLoggedIn, (req, res) => {
-//     db.journal.create({
-//       userId: req.user.id,
-//       //location id?
-//       title: req.body.title,
-//       content: req.body.content
-//     })
-//     .then((post) => {
-//       res.redirect('/profile/journal')
-//     })
-//     .catch((error) => {
-//         console.log('error posting journal to database', error)
-//     })
-//   })
 app.post('/profile/journal', isLoggedIn, (req, res) => {
-    // db.location.findOrCreate({
-    //   where: {
-    //       userId: req.user.id,
-    //       latitude: req.body.latz, //not sure about this
-    //   }
-    // })
-    // .then(function([location, created]) {
-    //     db.journal.findOrCreate({
-    //         where: {
-    //         title: req.body.title, content: req.body.content, userId: req.user.id
-    //         }
-    //     }).then(function([journal, created]){
-    //         location.addLocation(location).then(function(relationInfo) {
-    //             console.log('LOOOOOOK!!!!!!', location.id, 'added to', journal.title)
-    //         })
-    //     })
-    //     res.redirect('/profile/journal')
-    // })
-
-//trying the other way!
 let latz = req.body.latz
 console.log(req.body.latz)
     db.journal.findOrCreate({
-        where:{title: req.body.title, content: req.body.content, userId: req.user.id}
+        where:{title: req.body.title, content: req.body.content, userId: req.user.id, zip: latz}
     }).then(function([journal, created]) {
         journal.getLocations().then(function(locations){
             db.location.findOrCreate({
                 where: {
-                    userId: req.user.id, latitude: latz
+                    userId: req.user.id, zip: latz
                 }
             }).then(function([location,created]){
                 journal.addLocation(location).then(function(relationInfo){
                     // console.log(location.latitude, 'has a new journal entry', journal.title)
                 })
+                res.redirect('/profile/journal')
             });
         })
     })
-
-
-
-
-
-
     //modify the actual journal database
     let newTitle = req.body.newTitle
     let newContent = req.body.newContent

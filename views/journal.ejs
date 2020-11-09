@@ -5,7 +5,7 @@
       <label>Choose a Favorited Location:</label>
       <select name='latz'>
         <% location.forEach(element=>{ %>
-            <option value=<%=element.latitude%>><%=element.latitude%></option>
+            <option value=<%=element.zip%>><%=element.zip%></option>
           <% }) %>
     </select>
     <label for="title">Journal Title</label>
@@ -22,7 +22,7 @@
 <h3>Previous Entries</h3>
 <ul>
 <% journal.forEach(entry=>{ %>
-    <p>Location: </p>
+    <p>Location: <%=entry.zip%></p>
     <li>Title: <%=entry.title%></li>
     <li>Entry: <%=entry.content%></li>
     <form method="DELETE" action="/profile/journal">

@@ -155,28 +155,58 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
 //     })
 //   })
 app.post('/profile/journal', isLoggedIn, (req, res) => {
-    console.log('!!!!!!!!!!!!!!!!!!!!!', req.body.title)
     db.location.findOrCreate({
       where: {
           userId: req.user.id,
-          latitude: req.body.location, //not sure about this
+          latitude: req.body.latz, //not sure about this
       }
     })
     .then(function([location, created]) {
-        db.journal.create({
+        db.journal.findOrCreate({
+            where: {
             title: req.body.title, content: req.body.content, userId: req.user.id
+            }
         }).then(function([journal, created]){
-            location.addJournal(journal).then(function(relationInfo) {
-                console.log(journal.title, 'added to', location.latitude)
+            location.addLocation(location).then(function(relationInfo) {
+                console.log('LOOOOOOK!!!!!!', location.id, 'added to', journal.title)
             })
         })
+        res.redirect('/profile/journal')
+    })
+    //modify the actual journal database
+    let newTitle = req.body.newTitle
+    let newContent = req.body.newContent
+    let journalId = req.body.journalId
+    db.journal.update({
+        title: newTitle,
+        content: newContent
+    } , {
+        where: {
+            id: journalId
+        }
+    }).then(numRowsChanged=>{
+        console.log('Rows Modified', numRowsChanged)
         res.redirect('/profile/journal')
     })
     .catch((error) => {
         console.log('error posting journal to database', error)
     })
-  })
+   })
 
+/////////////////////UPDATE JOURNAL ROUTE//////////////////
+app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
+    let modifyTitle = req.query.title
+    let modifyContent = req.query.content
+    db.journal.findOne({
+        where: {
+            title: modifyTitle,
+            content: modifyContent
+        }
+    })
+    .then(foundJournal=>{
+        res.render('updateJournal', {foundJournal, foundJournal})
+    })
+})
 
 /////////////////PORT////////////////
 app.listen(3000, ()=>{

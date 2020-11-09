@@ -3,10 +3,10 @@
 <form action="/profile/journal" method="POST">
     <!-- <div class="form-group"> -->
       <label>Choose a Favorited Location:</label>
-      <select name='location'>
-      <% location.forEach(element=>{ %>
-        <option value='<%element.latitude%>'><%=element.latitude%></option>
-      <% }) %>
+      <select name='latz'>
+        <% location.forEach(element=>{ %>
+            <option value=<%=element.latitude%>><%=element.latitude%></option>
+          <% }) %>
     </select>
     <label for="title">Journal Title</label>
     <input type="text" id="title" name="title">
@@ -16,7 +16,11 @@
     <input hidden type="text" name="locationId" value="">
     <input type="submit" class="btn btn-primary">
   </form>
-
+<p>
+    <% location.forEach(element=>{ %>
+    <%=element.latitude%>
+<% }) %>
+</p>
 <!-- use a for each loop to populate journal titles and names with get method -->
  
 <h3>Previous Entries</h3>
@@ -28,6 +32,13 @@
     <input hidden type="text" name="title" value="<%= entry.title %>">
     <input hidden type="text" name="content" value="<%= entry.content %>">
     <button class="btn" type="submit">Delete Journal Entry</button>
+    </form>
+
+    <form method="GET" action="/profile/journal/modify">
+        <!-- add in location information here -->
+    <input hidden type="text" name="title" value="<%= entry.title %>">
+    <input hidden type="text" name="content" value="<%= entry.content %>">
+    <button class="btn" type="submit">Modify Journal Entry</button>
     </form>
 
 <% }) %>

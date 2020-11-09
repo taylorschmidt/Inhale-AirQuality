@@ -16,18 +16,15 @@
     <input hidden type="text" name="locationId" value="">
     <input type="submit" class="btn btn-primary">
   </form>
-<p>
-    <% location.forEach(element=>{ %>
-    <%=element.latitude%>
-<% }) %>
-</p>
+
 <!-- use a for each loop to populate journal titles and names with get method -->
  
 <h3>Previous Entries</h3>
 <ul>
 <% journal.forEach(entry=>{ %>
-    <li><%=entry.title%></li>
-    <li><%=entry.content%></li>
+    <p>Location: </p>
+    <li>Title: <%=entry.title%></li>
+    <li>Entry: <%=entry.content%></li>
     <form method="DELETE" action="/profile/journal">
     <input hidden type="text" name="title" value="<%= entry.title %>">
     <input hidden type="text" name="content" value="<%= entry.content %>">

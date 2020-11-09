@@ -106,9 +106,10 @@ app.post('/profile', isLoggedIn, (req, res) => {
 
 ///////////JOURNAL ROUTE//////////////
 app.get('/profile/journal', isLoggedIn, (req, res)=>{
+    
         db.location.findAll({
             where: {
-                userId: req.user.id
+                userId: req.user.id,
             }
         })
         .then(location=>{
@@ -155,24 +156,49 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
 //     })
 //   })
 app.post('/profile/journal', isLoggedIn, (req, res) => {
-    db.location.findOrCreate({
-      where: {
-          userId: req.user.id,
-          latitude: req.body.latz, //not sure about this
-      }
-    })
-    .then(function([location, created]) {
-        db.journal.findOrCreate({
-            where: {
-            title: req.body.title, content: req.body.content, userId: req.user.id
-            }
-        }).then(function([journal, created]){
-            location.addLocation(location).then(function(relationInfo) {
-                console.log('LOOOOOOK!!!!!!', location.id, 'added to', journal.title)
-            })
+    // db.location.findOrCreate({
+    //   where: {
+    //       userId: req.user.id,
+    //       latitude: req.body.latz, //not sure about this
+    //   }
+    // })
+    // .then(function([location, created]) {
+    //     db.journal.findOrCreate({
+    //         where: {
+    //         title: req.body.title, content: req.body.content, userId: req.user.id
+    //         }
+    //     }).then(function([journal, created]){
+    //         location.addLocation(location).then(function(relationInfo) {
+    //             console.log('LOOOOOOK!!!!!!', location.id, 'added to', journal.title)
+    //         })
+    //     })
+    //     res.redirect('/profile/journal')
+    // })
+
+//trying the other way!
+let latz = req.body.latz
+console.log(req.body.latz)
+    db.journal.findOrCreate({
+        where:{title: req.body.title, content: req.body.content, userId: req.user.id}
+    }).then(function([journal, created]) {
+        journal.getLocations().then(function(locations){
+            db.location.findOrCreate({
+                where: {
+                    userId: req.user.id, latitude: latz
+                }
+            }).then(function([location,created]){
+                journal.addLocation(location).then(function(relationInfo){
+                    // console.log(location.latitude, 'has a new journal entry', journal.title)
+                })
+            });
         })
-        res.redirect('/profile/journal')
     })
+
+
+
+
+
+
     //modify the actual journal database
     let newTitle = req.body.newTitle
     let newContent = req.body.newContent

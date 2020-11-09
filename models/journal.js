@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     locationId: DataTypes.INTEGER,
     title: DataTypes.STRING,
     content: DataTypes.TEXT,
-    zip: DataTypes.INTEGER
+    zip: DataTypes.INTEGER,
+    feeling: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'journal',

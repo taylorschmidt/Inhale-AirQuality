@@ -1,13 +1,18 @@
 <h1>Journal Entry Modification</h1>
 
-<p><%=foundJournal.id%></p>
+
 
 <form action="/profile/journal" method="POST">
     <!-- <div class="form-group"> -->
+    <label for='zip'><%=foundJournal.zip%></label>
     <label for="title">Journal Title</label>
     <input type="text" value="<%=foundJournal.title%>" id="title" name="newTitle">
     <label for="content">Entry</label>
     <input type="text" value="<%=foundJournal.content%>"id="content" name="newContent">
     <input hidden type="number" name="journalId" value="<%=foundJournal.id%>">
+    How am I feeling today?
+    <input type="radio" name="feeling" VALUE='good'>Good
+    <input type="radio" name="feeling" VALUE='ok'>Ok
+    <input type="radio" name="feeling" VALUE='poor'>Poor
     <button class="btn" type="submit">Update Journal Entry</button>
   </form>

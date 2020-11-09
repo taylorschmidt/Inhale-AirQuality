@@ -3,6 +3,7 @@
 <h2>Favorites List</h2>
 <ul>
     <% favorites.forEach(favorite => { %>
+        <a href=<%=`/show?zip=${favorite.zip}`%>>
         <li><%= favorite.zip %>
         <!-- journal form -->
         

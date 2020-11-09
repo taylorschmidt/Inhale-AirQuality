@@ -111,9 +111,8 @@ app.post('/profile', isLoggedIn, (req, res) => {
   })
 
 
-///////////JOURNAL ROUTE//////////////
+///////////GET JOURNAL ROUTE INCL. DELETE JOURNAL ROUTE//////////////
 app.get('/profile/journal', isLoggedIn, (req, res)=>{
-    
         db.location.findAll({
             where: {
                 userId: req.user.id,
@@ -147,33 +146,36 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
     })
 })
    
-///////////////POST JOURNAL ENTRIES ROUTE/////////////////
+///////////////POST AND MODIFY JOURNAL ENTRIES ROUTE/////////////////
 app.post('/profile/journal', isLoggedIn, (req, res) => {
 let latz = req.body.latz
 console.log(req.body.latz)
+
+//finds the location where the journal is trying to add
+db.location.findOrCreate({
+    where:{
+        userId: req.user.id, zip: latz
+    }
+}).then(function([location, created]) {
     db.journal.findOrCreate({
-        where:{title: req.body.title, content: req.body.content, userId: req.user.id, zip: latz}
-    }).then(function([journal, created]) {
-        journal.getLocations().then(function(locations){
-            db.location.findOrCreate({
-                where: {
-                    userId: req.user.id, zip: latz
-                }
-            }).then(function([location,created]){
-                journal.addLocation(location).then(function(relationInfo){
-                    // console.log(location.latitude, 'has a new journal entry', journal.title)
-                })
-                res.redirect('/profile/journal')
-            });
+        where: {title: req.body.title, content: req.body.content, userId: req.user.id, zip: latz, feeling: req.body.feeling}
+        //adds journal to that location, creating locationId in the journals model
+    }).then(function([journal,created]){
+        location.addJournal(journal).then(function(relationInfo) {
+            console.log(journal.title, "added to", location.zip)
         })
+        res.redirect('/profile/journal')
     })
-    //modify the actual journal database
+})
+    //UPDATE: modify the actual journal database
     let newTitle = req.body.newTitle
     let newContent = req.body.newContent
     let journalId = req.body.journalId
+    let newFeeling = req.body.feeling
     db.journal.update({
         title: newTitle,
-        content: newContent
+        content: newContent,
+        feeling: newFeeling
     } , {
         where: {
             id: journalId

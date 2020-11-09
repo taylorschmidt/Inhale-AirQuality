@@ -12,7 +12,10 @@
     <input type="text" id="title" name="title">
     <label for="content">Entry</label>
     <input type="text" id="content" name="content">
-    <input hidden type="text" name="userId" value="<%=   %>">
+    How am I feeling today?
+    <input type="radio" name="feeling" VALUE='good'>Good
+    <input type="radio" name="feeling" VALUE='ok'>Ok
+    <input type="radio" name="feeling" VALUE='poor'>Poor
     <input hidden type="text" name="locationId" value="">
     <input type="submit" class="btn btn-primary">
   </form>
@@ -22,9 +25,12 @@
 <h3>Previous Entries</h3>
 <ul>
 <% journal.forEach(entry=>{ %>
-    <p>Location: <%=entry.zip%></p>
+  
+    Location: <a href=<%=`/show?zip=${entry.zip}`%>><%=entry.zip%></a>
     <li>Title: <%=entry.title%></li>
     <li>Entry: <%=entry.content%></li>
+    <li>Feeling: <%=entry.feeling%></li>
+    <li>Time: <%=entry.createdAt%></li>
     <form method="DELETE" action="/profile/journal">
     <input hidden type="text" name="title" value="<%= entry.title %>">
     <input hidden type="text" name="content" value="<%= entry.content %>">

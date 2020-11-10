@@ -1,0 +1,92 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: url("https://img2.pngio.com/cloudy-sky-background-png-transparent-cloudy-sky-backgroundpng-light-blue-sky-png-2176_1493.jpg")no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #246084;
+    color: white;
+    text-align: right;
+  }
+
+.nav {
+    position: fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    background-color: #246084;
+    /* overflow: hidden; */
+    /* margin: -1vw; */
+}
+
+#signupButton, #homeButton, #loginButton, #logoutButton, #profileButton {
+        /* float: left; */
+        color: #f2f2f2;
+        text-align: center;
+        padding: 2vw;
+        text-decoration: none;
+        font-size: 1.5vw;
+}
+#signupButton:hover, #homeButton:hover, #loginButton:hover, #logoutButton:hover, #profileButton:hover {
+    background-color: grey
+}
+
+#signupButton, #logoutButton, #loginButton, #profileButton {
+    float: right;
+}
+
+#homeButton {
+    float:left;
+}
+
+.welcome {
+    border: 1px solid grey;
+    margin: 10vw 1vw 1vw 1vw;
+    padding: 1vw;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo {
+ height: 40%;
+ width:40%
+}
+
+#welcomeText {
+    height: 15%;
+    width: 35%;
+}
+
+#zipText {
+  text-align: center;
+}
+
+
+#submitButton{
+    position: absolute;
+    margin: 0 auto;
+    height:3vw;
+    width: 6vw;
+    border:none;
+    background: #246084;
+    color: white;
+}
+
+#submitButton:hover{
+    background:gray
+}
+
+#zipTextBox {
+    font-size: 1.5vw;
+    margin-top: 2vw;
+    height: 3vw;
+}

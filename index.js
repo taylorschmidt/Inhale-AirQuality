@@ -53,7 +53,7 @@ res.render('home')
 
 //////////////////////SHOW ROUTE - AXIOS/////////////////////////
 app.get('/show', (req,res)=> {
-    console.log('HERE ARE PARAMS', req.params)
+    // console.log('HERE ARE PARAMS', req.params)
     // let searchLat = req.query.lat 
     // let searchLong = req.query.long 
     let searchZip = req.query.zip 

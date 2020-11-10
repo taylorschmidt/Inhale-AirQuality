@@ -1,5 +1,18 @@
-<h1>Here is the homepage</h1>
-<p>Search for a location:</p>
+
+
+<div class="welcome">
+    <img id="logo" src="https://i.imgur.com/3Ymxr7z.png" alt="inhale logo">
+    <form id="locationZipSearch" method="GET" action="/show">
+        <!-- <label id="zipText" for='zip'>Enter Zip Code:</label><br> -->
+        <input id="zipTextBox" type='number' placeholder="Enter Zip Code" class='zip' id='zip' name='zip'><br>
+        <input id="submitButton" type='submit'>
+    </form>
+    <p id="welcomeText">Nullam sollicitudin dui tellus, eget consectetur lectus consectetur sed. Sed tincidunt faucibus blandit. Ut auctor tincidunt porta. Suspendisse potenti. Curabitur ipsum orci, vehicula at nisi sed, accumsan finibus nibh. Mauris in sem enim. Fusce non nunc in justo euismod efficitur sit amet a enim. Curabitur id interdum nulla. Sed eget diam eget lorem tincidunt dignissim. Donec id metus nec lacus lobortis scelerisque et in quam. </p>
+</div>
+
+
+
+
 
 <!-- <form id="locationSearch" method="GET" action="/show">
     <label for='lat'>Latitude</label>
@@ -8,9 +21,8 @@
     <input type='text' class='long' id='long' name='long'>
     <input type='submit'>
 </form> -->
-
-<form id="locationZipSearch" method="GET" action="/show">
-    <label for='zip'>Zip Code</label>
+<!-- <form id="locationZipSearch" method="GET" action="/show">
+    <label for='zip'>Zip Code:</label>
     <input type='number' class='zip' id='zip' name='zip'>
     <input type='submit'>
-</form>
+</form> -->

@@ -17,18 +17,16 @@ body {
     text-align: right;
   }
 
-.nav {
+header {
     position: fixed;
     left: 0;
     top:0;
     width: 100%;
     background-color: #246084;
-    /* overflow: hidden; */
-    /* margin: -1vw; */
+    overflow: hidden;
 }
 
 #signupButton, #homeButton, #loginButton, #logoutButton, #profileButton {
-        /* float: left; */
         color: #f2f2f2;
         text-align: center;
         padding: 2vw;
@@ -47,35 +45,55 @@ body {
     float:left;
 }
 
+/* HOME PAGE STYLING */
+
 .welcome {
-    border: 1px solid grey;
-    margin: 10vw 1vw 1vw 1vw;
-    padding: 1vw;
-    background: white;
-    display: flex;
-    justify-content: space-between;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid grey;
+    margin-top: 14vw;
+    background-color: rgba(255, 255, 255, .8);
 }
 
 #logo {
- height: 40%;
- width:40%
+ padding: 0 0 2vw 0;
+ width: 490px;
+ height: 200px;
+
 }
 
 #welcomeText {
-    height: 15%;
-    width: 35%;
+    /* width: 300px;
+    height: 250px; */
+   font-size: 20px;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 200px;
+  
 }
 
-#zipText {
-  text-align: center;
+#THEFORM {
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    
 }
 
 
 #submitButton{
-    position: absolute;
-    margin: 0 auto;
-    height:3vw;
-    width: 6vw;
+    margin-top: 1%;
+    margin-left: 33%;
+    height:40px;
+    width: 90px;
     border:none;
     background: #246084;
     color: white;
@@ -86,7 +104,204 @@ body {
 }
 
 #zipTextBox {
-    font-size: 1.5vw;
-    margin-top: 2vw;
-    height: 3vw;
+    font-size: 17px;
+    height: 50px;
+    width: 250px;
+}
+
+/* SIGN IN PAGE */
+.logInContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 14vw 20vw 0 20vw;
+}
+
+.loginSubmit {
+    height:40px;
+    width: 90px;
+    border:none;
+    background: #246084;
+    color: white;
+    margin: 1vw 0 0 0
+}
+
+.loginSubmit:hover{
+    background:gray
+}
+
+/* SHOW PAGE CSS */
+
+.topShowContainer {
+    margin-top: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middleShowContainer {
+    border: 1px solid black;
+    display:flex;
+    align-items: stretch;
+    align-content: center;
+    margin: 0vw 20vw 0vw 20vw;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.apiContainer, .pollutantsContainer {
+    text-align: center;
+    flex-basis: 100%;
+    border: 2px solid grey;
+}
+.pollutantsContainer {
+    text-align: left;
+}
+
+.learnMore:hover{
+    background:gray
+}
+
+table {
+  
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .pollutants {
+      text-align:center;
+  }
+
+ .showText {
+     font-size: 20px;
+     text-align: center;
+ }
+
+ .favoriteForm {
+     text-align: center;
+ }
+
+ #favoritesButton {
+    height:40px;
+    width: 120px;
+    border:none;
+    background: #246084;
+    color: white;
+    margin: 1vw 0 0 0
+ }
+
+ #favoritesButton:hover {
+     background: grey;
+ }
+
+ /* PROFILE STYLING */
+ .profileHeader {
+    margin-top: 7vw;
+ }
+
+ #profileName {
+     text-align: center;
+ }
+
+ .favoritesContainer {
+    text-align:center;
+    border: 2px solid grey;
+    /* display:flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: center; */
+    /* margin-right: 60vw; */
+    display:inline-block;
+    background-color: rgba(255, 255, 255, .8);
+    padding: 1vw;
+ }
+
+.faveZip {
+     font-size: 30px;
+     display: inline;
+ }
+
+.deleteFave {
+    height:40px;
+    width: 90px;
+    border:none;
+    background: #246084;
+    color: white;
+}
+
+.deleteFave:hover{
+    background: grey;
+}
+/* JOURNAL PAGE STYLING */
+.journalContainer {
+    margin-top: 7vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 25em;
+    align-items: stretch;
+    margin: 7vw 25vw 0 25vw;
+}
+
+.newEntryContainer {
+    border: 2px solid grey;
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .8);
+    padding-bottom: 1vw;
+    align-items: stretch;
+}
+
+#journalTitle {
+    width: 29vw;
+    height: 2vw;
+}
+
+#journalTextArea {
+    width: 29vw;
+    height: 8vw;
+}
+
+.previousEntryContainer {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.entries {
+    text-align: left;
+    border: 2px solid grey;
+}
+
+.previousEntriesText {
+    /* padding: 0; */
+    background: lightgrey;
+    border: 2px solid grey;
+}
+
+.journalButtons {
+    /* text-align:center; */
+    display: inline;
+    text-align: center;
+}
+
+.deleteFave {
+    margin: 1px;
+}
+
+.entryText {
+    width: 20vw;
+    /* overflow-wrap: break-word; */
 }

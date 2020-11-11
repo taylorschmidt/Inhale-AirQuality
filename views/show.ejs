@@ -1,24 +1,57 @@
-<h1>Information about searched location: <%=searchZip%></h1>
-<p>Overall AQI: <%= data.data.indexes.baqi.aqi %></p>
-<img src="https://i.imgur.com/VbeHPB2.png" height='30%' width='35%'>
-<p>Category: <%= data.data.indexes.baqi.category %></p>
-<p>Dominant Pollutant: <%= data.data.indexes.baqi.dominant_pollutant %></p>
-<p>Pollutants</p>
-<p>CO AQI: <%= data.data.pollutants.co.aqi_information.baqi.aqi %></p>
-<button>Learn More</button>
-<p>NO2 AQI: <%= data.data.pollutants.no2.aqi_information.baqi.aqi %></p>
-<button>Learn More</button>
-<p>O3 AQI: <%= data.data.pollutants.o3.aqi_information.baqi.aqi %></p>
-<button>Learn More</button>
-<p>PM10 AQI: <%= data.data.pollutants.pm10.aqi_information.baqi.aqi %></p>
-<button>Learn More</button>
-<p>SO2 AQI: <%= data.data.pollutants.so2.aqi_information.baqi.aqi %></p>
-<button>Learn More</button>
+<div class="topShowContainer">
+<h1>Air Quality in <%=searchZip%></h1>
+<img src="https://i.imgur.com/FXWho6U.png" height='8%' width='8%'>
+<p><%= data.data.indexes.baqi.category %></p>
+</div>
 
+<div class="middleShowContainer">
+<div class="apiContainer">
+<h3>Air Quality Index</h3>
+<div class="showText"><%= data.data.indexes.baqi.aqi %></div>
+<img src="https://i.imgur.com/FI0q8eU.png" height='85%' width='100%'>
+</div>
 
+<div class="pollutantsContainer">
+<!-- <p>Pollutants</p> -->
+<h3 class="pollutants">Pollutants</h3>
+<div class="showText">Dominant Pollutant: <%= data.data.indexes.baqi.dominant_pollutant %></div>
+<table>
+  <tr>
+    <th>Pollutant</th>
+    <th>Concentration (ppm)</th>
+  </tr>
+  <tr>
+    <td>Carbon Monoxide (CO)</td>
+    <td><%= data.data.pollutants.co.aqi_information.baqi.aqi %></td>
+  </tr>
+  <tr>
+    <td>Nitrogen Dioxide (NO2)</td>
+    <td><%=data.data.pollutants.no2.aqi_information.baqi.aqi%></td>
+  </tr>
+  <tr>
+    <td>Ozone (O3)</td>
+    <td><%= data.data.pollutants.o3.aqi_information.baqi.aqi %></td>
+  </tr>
+  <tr>
+    <td>Particulate Matter (PM10)</td>
+    <td><%= data.data.pollutants.pm10.aqi_information.baqi.aqi %></td>
+  </tr>
+  <tr>
+    <td>Sulfur Dioxide (SO2)</td>
+    <td><%= data.data.pollutants.so2.aqi_information.baqi.aqi %></td>
+  </tr>
+</table>
+<div class = "favoriteForm">
 <form method="POST" action="/profile">
     <input hidden type="number" name="zip" value="<%= searchZip %>">
     <input hidden type="number" name="latitude" value="<%= lat  %>">
     <input hidden type="number" name="longitude" value="<%= long %>">
-    <button class="btn" type="submit">Add Location to Favorites</button>
+    <button id = "favoritesButton" type="submit">Add to Favorites</button>
   </form>
+</div>
+  <img src="https://i.imgur.com/3Ymxr7z.png" alt="inhale logo" height= "25%" width="100%">
+
+</div>
+</div>
+
+

@@ -1,21 +1,29 @@
-<h2><%= currentUser.name %>'s Profile</h2>
+<div class="profileHeader">
+<h2 id="profileName"><%= currentUser.name %></h2>
 
-<h2>Favorites List</h2>
-<ul>
+
+</div>
+
+<h2>My Locations:</h2>
+
+
     <% favorites.forEach(favorite => { %>
-        <a href=<%=`/show?zip=${favorite.zip}`%>>
-        <li><%= favorite.zip %>
-        <!-- journal form -->
         
+        <div class="favoritesContainer">
+            <div class="faveZip">
+        <a href=<%=`/show?zip=${favorite.zip}`%>>
+        <%= favorite.zip %>
+    </div>
+        <div class="deleteZip">
         <!-- delete form -->
         <form method="DELETE" action="/profile">
         <input hidden type="number" name="latitude" value="<%= favorite.latitude %>">
         <input hidden type="number" name="longitude" value="<%= favorite.longitude %>">
-        <button class="btn" type="submit">Delete Location</button>
+        <button class="deleteFave" type="submit">Delete</button>
         </form>
-        
-        </li>
-    <% }) %>
-</ul>
+    </div>
+    </div>
+   
 
-<a href="/profile/journal">My Journal</a>
+        
+    <% }) %>

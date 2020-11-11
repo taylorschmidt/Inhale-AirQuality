@@ -7,19 +7,22 @@
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
     <link type="text/css" rel="stylesheet" href="http://localhost:<%=process.env.PORT%>/css/style.css" media="screen,projection"/>
-    <title>Express Auth</title>
+    <title>Inhale</title>
 </head>
 <body>
     <header>
         <nav>
                 <div class="nav">
                 <% if (!currentUser) { %>
+                <a id="homeButton" href="/">Inhale</a></li>
                 <a id="signupButton" href="/auth/signup">Signup</a></li>
                 <a id="loginButton" href="/auth/login">Login</a></li>
                 <% } else { %>
                 <a id="homeButton" href="/">Inhale</a></li>
                 <a id="logoutButton" href="/auth/logout">Logout</a></li>
+                <a id="profileButton"href="/profile/journal">Journal</a></li>
                 <a id="profileButton"href="/profile">Profile</a></li>
+                
                 </div>
                 <% } %>
            

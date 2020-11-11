@@ -1,15 +1,27 @@
-<h1>Sign Up</h1>
 
+<div class="logInContainer">
+
+<div>
 <form method='POST' action="/auth/signup">
 
-<label for="new-name">Name</label>
-<input type="text" name="name" id="new-name">
 
-<label for="new-email">Email</label>
-<input type="email" name="email" id="new-email">
+<label for="new-name"></label>
+<input id="zipTextBox" type="text" name="name" id="new-name" placeholder="name">
+</div>
 
-<label for="new-password">Password</label>
-<input type="password" name="password" id="new-password">
+<div>
+<label for="new-email"></label>
+<input id="zipTextBox" type="email" name="email" id="new-email" placeholder="your@email.com">
+</div>
 
-<input type="submit" value="Sign Up">
+<div>
+<label for="new-password"></label>
+<input id="zipTextBox" type="password" name="password" id="new-password" placeholder="password">
+</div>
+
+
+<input class = "loginSubmit" type="submit" value="Sign Up">
+
 </form>
+
+</div>

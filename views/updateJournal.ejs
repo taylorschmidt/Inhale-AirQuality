@@ -1,18 +1,22 @@
-<h1>Journal Entry Modification</h1>
+<div class="journalContainer">
+<h1>Edit Journal Entry</h1>
 
 
-
+<div class = "newEntryContainer">
 <form action="/profile/journal" method="POST">
     <!-- <div class="form-group"> -->
-    <label for='zip'><%=foundJournal.zip%></label>
-    <label for="title">Journal Title</label>
-    <input type="text" value="<%=foundJournal.title%>" id="title" name="newTitle">
-    <label for="content">Entry</label>
-    <input type="text" value="<%=foundJournal.content%>"id="content" name="newContent">
+    <br>
+      <div><label for='zip'>Location: <%=foundJournal.zip%></label></div>
+      <div>
+    <input id="journalTitle" type="text" value="<%=foundJournal.title%>" id="title" name="newTitle"></div>
+    <div>
+    <textarea id="journalTextArea" value="<%=foundJournal.content%>"id="content" name="newContent"><%=foundJournal.content%></textarea></div>
     <input hidden type="number" name="journalId" value="<%=foundJournal.id%>">
-    How am I feeling today?
+    <div>How am I feeling today?
     <input type="radio" name="feeling" VALUE='good'>Good
     <input type="radio" name="feeling" VALUE='ok'>Ok
-    <input type="radio" name="feeling" VALUE='poor'>Poor
-    <button class="btn" type="submit">Update Journal Entry</button>
+    <input type="radio" name="feeling" VALUE='poor'>Poor</div><br>
+   <div><button class="deleteFave" type="submit">Update Journal</button></div> 
   </form>
+</div>
+</div>

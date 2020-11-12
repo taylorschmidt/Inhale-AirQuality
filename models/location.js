@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     latitude: DataTypes.INTEGER,
     longitude: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
-    zip: DataTypes.INTEGER
+    zip: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'location',

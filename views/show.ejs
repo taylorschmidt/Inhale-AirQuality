@@ -1,19 +1,33 @@
 <div class="topShowContainer">
 <h1>Air Quality in <%=searchZip%></h1>
-<img src="https://i.imgur.com/FXWho6U.png" height='8%' width='8%'>
+
+<% if (data.data.indexes.baqi.aqi>201) { %>
+  <img src="https://i.imgur.com/pUXaroN.png" height='8%' width='8%'>
+<% } else if (data.data.indexes.baqi.aqi>150 && data.data.indexes.baqi.aqi<201) { %>
+  <img src="https://i.imgur.com/dNw9BG9.png" height='8%' width='8%'>
+<% } else if (data.data.indexes.baqi.aqi>100 && data.data.indexes.baqi.aqi<151) { %>
+  <img src="https://i.imgur.com/jCm33bW.png" height='8%' width='8%'>
+<% } else if (data.data.indexes.baqi.aqi>50 && data.data.indexes.baqi.aqi<101) { %>
+  <img src="https://i.imgur.com/FXWho6U.png" height='8%' width='8%'>
+<% } else { %>
+  <img src="https://i.imgur.com/hKVYSR1.png" height='8%' width='8%'>
+<% } %>
+
 <p><%= data.data.indexes.baqi.category %></p>
 </div>
 
+
 <div class="middleShowContainer">
 <div class="apiContainer">
-<h3>Air Quality Index</h3>
+<h2>Air Quality Index</h2>
 <div class="showText"><%= data.data.indexes.baqi.aqi %></div>
 <img src="https://i.imgur.com/FI0q8eU.png" height='85%' width='100%'>
+
 </div>
 
 <div class="pollutantsContainer">
 <!-- <p>Pollutants</p> -->
-<h3 class="pollutants">Pollutants</h3>
+<h2 class="pollutants">Pollutants</h3>
 <div class="showText">Dominant Pollutant: <%= data.data.indexes.baqi.dominant_pollutant %></div>
 <table>
   <tr>
@@ -21,23 +35,23 @@
     <th>Concentration (ppm)</th>
   </tr>
   <tr>
-    <td>Carbon Monoxide (CO)</td>
+    <td><a href="/co">Carbon Monoxide (CO)</a></td>
     <td><%= data.data.pollutants.co.aqi_information.baqi.aqi %></td>
   </tr>
   <tr>
-    <td>Nitrogen Dioxide (NO2)</td>
+    <td><a href="/no2">Nitrogen Dioxide (NO2)</a></td>
     <td><%=data.data.pollutants.no2.aqi_information.baqi.aqi%></td>
   </tr>
   <tr>
-    <td>Ozone (O3)</td>
+    <td><a href="/o3">Ozone (O3)</a></td>
     <td><%= data.data.pollutants.o3.aqi_information.baqi.aqi %></td>
   </tr>
   <tr>
-    <td>Particulate Matter (PM10)</td>
+    <td><a href="/pm10">Particulate Matter (PM10)</a></td>
     <td><%= data.data.pollutants.pm10.aqi_information.baqi.aqi %></td>
   </tr>
   <tr>
-    <td>Sulfur Dioxide (SO2)</td>
+    <td><a href="/so2">Sulfur Dioxide (SO2)</a></td>
     <td><%= data.data.pollutants.so2.aqi_information.baqi.aqi %></td>
   </tr>
 </table>

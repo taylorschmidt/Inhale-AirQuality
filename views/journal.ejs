@@ -47,22 +47,23 @@
     Location: <a href=<%=`/show?zip=${entry.zip}`%>><%=entry.zip%></a>
     <div>Title: <%=entry.title%></div>
     <div class="entryText"> Entry: <%=entry.content%></div>
-    <div>Feeling: <%=entry.feeling%></div>
+    <div>Today, I'm feeling: <%=entry.feeling%></div>
     <div><%=entry.createdAt%></div>
 
-    
     <div class="journalButtons">
+    <form method="GET" action="/profile/journal/modify">
+      <input hidden type="text" name="title" value="<%= entry.title %>">
+      <input hidden type="text" name="content" value="<%= entry.content %>">
+      <button class="deleteFave" type="submit">Edit</button>
+      </form>
+    
     <form method="DELETE" action="/profile/journal">
     <input hidden type="text" name="title" value="<%= entry.title %>">
     <input hidden type="text" name="content" value="<%= entry.content %>">
     <button class="deleteFave" type="submit">Delete</button>
     </form>
 
-    <form method="GET" action="/profile/journal/modify">
-    <input hidden type="text" name="title" value="<%= entry.title %>">
-    <input hidden type="text" name="content" value="<%= entry.content %>">
-    <button class="deleteFave" type="submit">Edit</button>
-    </form>
+   
   </div>
 </div>
  

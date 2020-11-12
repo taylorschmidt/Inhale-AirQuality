@@ -207,6 +207,30 @@ app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
     })
 })
 
+///////////POLLUTANTS INFO ROUTES////////////
+app.get('/co', (req,res)=> {
+    res.render('info/co')
+    })
+
+app.get('/no2', (req,res)=> {
+    res.render('info/no2')
+    })
+
+app.get('/o3', (req,res)=> {
+    res.render('info/o3')
+    })
+
+app.get('/pm10', (req,res)=> {
+    res.render('info/pm10')
+    })
+
+app.get('/so2', (req,res)=> {
+    res.render('info/so2')
+    })
+
+
+
+
 /////////////////PORT////////////////
 app.listen(process.env.PORT, ()=>{
     console.log('listening at port you chose!')

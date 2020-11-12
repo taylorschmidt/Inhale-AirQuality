@@ -5,10 +5,18 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
+/*
+###################
+HEADER/FOOTER
+###################
+*/
+
 .footer {
-    position: fixed;
+    position: fixed; 
     left: 0;
     bottom: 0;
     width: 100%;
@@ -18,7 +26,6 @@ body {
   }
 
 header {
-    position: fixed;
     left: 0;
     top:0;
     width: 100%;
@@ -31,7 +38,7 @@ header {
         text-align: center;
         padding: 2vw;
         text-decoration: none;
-        font-size: 1.5vw;
+        font-size: 1.5em;
 }
 #signupButton:hover, #homeButton:hover, #loginButton:hover, #logoutButton:hover, #profileButton:hover {
     background-color: grey
@@ -45,7 +52,11 @@ header {
     float:left;
 }
 
-/* HOME PAGE STYLING */
+/*
+###################
+HOME PAGE
+###################
+*/
 
 .welcome {
     display:flex;
@@ -53,30 +64,25 @@ header {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    border: 2px solid grey;
-    margin-top: 14vw;
+    border-radius: 1vw;
+    margin: 6vw 10vw 0 10vw;
     background-color: rgba(255, 255, 255, .8);
 }
 
 #logo {
  padding: 0 0 2vw 0;
- width: 490px;
- height: 200px;
-
+ width: 35em;
+ height: 13em;
 }
 
 #welcomeText {
-    /* width: 300px;
-    height: 250px; */
-   font-size: 20px;
-    display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 200px;
-  
+    background-color: rgba(255, 255, 255, .2);
+    margin: 1vw 18vw 0 18vw; 
+    text-align: center;
+    font-size: 1em;
+    color: #246084
 }
+
 
 #THEFORM {
     width: 400px;
@@ -85,18 +91,18 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center; 
-    
 }
 
-
 #submitButton{
-    margin-top: 1%;
-    margin-left: 33%;
+    text-align: center;
     height:40px;
     width: 90px;
-    border:none;
+    border-radius: 5px;
     background: #246084;
     color: white;
+}
+#submitButtonDiv {
+    text-align: center;
 }
 
 #submitButton:hover{
@@ -109,12 +115,18 @@ header {
     width: 250px;
 }
 
-/* SIGN IN PAGE */
+
+/* 
+###################
+SIGN UP/LOGIN PAGES
+###################
+*/
+
 .logInContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 14vw 20vw 0 20vw;
+    margin: 3vw 20vw 0 20vw;
 }
 
 .loginSubmit {
@@ -130,10 +142,13 @@ header {
     background:gray
 }
 
-/* SHOW PAGE CSS */
+/*
+###################
+SHOW PAGE
+###################
+*/
 
 .topShowContainer {
-    margin-top: 5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -204,26 +219,23 @@ table {
      background: grey;
  }
 
- /* PROFILE STYLING */
- .profileHeader {
-    margin-top: 7vw;
- }
-
+/*
+###################
+PROFILE
+###################
+*/
+ 
  #profileName {
      text-align: center;
  }
 
  .favoritesContainer {
     text-align:center;
-    border: 2px solid grey;
-    /* display:flex;
-    flex-direction: column;
-    align-items: stretch;
-    align-content: center; */
-    /* margin-right: 60vw; */
+    border: 3px solid grey;
+    margin: 1vw;
     display:inline-block;
     background-color: rgba(255, 255, 255, .8);
-    padding: 1vw;
+    padding: 1.5vw;
  }
 
 .faveZip {
@@ -242,9 +254,14 @@ table {
 .deleteFave:hover{
     background: grey;
 }
-/* JOURNAL PAGE STYLING */
+
+/*
+###################
+JOURNAL
+###################
+*/
+
 .journalContainer {
-    margin-top: 7vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -286,13 +303,12 @@ table {
 }
 
 .previousEntriesText {
-    /* padding: 0; */
     background: lightgrey;
     border: 2px solid grey;
+   
 }
 
 .journalButtons {
-    /* text-align:center; */
     display: inline;
     text-align: center;
 }
@@ -301,7 +317,68 @@ table {
     margin: 1px;
 }
 
-.entryText {
-    width: 20vw;
-    /* overflow-wrap: break-word; */
+
+
+/* 
+################
+POLLUTANT PAGES
+################ 
+*/
+
+.infoContainer {
+    background-color: rgba(255, 255, 255, .3);
 }
+
+.infoContainerTop {
+    text-align: center;
+    margin: 0 8vw 0 8vw
+}
+
+.pollContainer1 {
+    display: flex;
+    margin: 1vw 8vw 0 8vw;
+    justify-content: center;
+}
+
+
+.pollSubContainer1 {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    flex: 1 1 0px;
+    margin: 0 0 2vw 0;
+}
+
+.pollSubInfo {
+    text-align: left;
+}
+
+.pollTitle {
+    font-size: 4vw;
+}
+
+
+/* 
+################
+PHONE ADJUSTMENTS 
+################
+*/
+
+@media only screen and (max-width: 600px) {
+    #logo {
+        height: 125px;
+        width: 250px;
+    }
+    #zipTextBox {
+        height: 50px;
+        width: 175px;
+    }
+    #THEFORM{
+        margin:-20vw;
+    }
+    #welcomeText{
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+

@@ -51,7 +51,7 @@ app.use('/auth', require('./controllers/auth.js'))
 
 //////////////////////HOME ROUTE/////////////////////
 app.get('/', (req,res)=> {
-res.render('home')
+    res.render('home')
 })
 
 //////////////////////SHOW ROUTE - AXIOS/////////////////////////
@@ -116,7 +116,7 @@ app.post('/profile', isLoggedIn, (req, res) => {
     .catch((error) => {
         console.log('error posting to database', error)
     })
-  })
+})
 
 
 /////////////////GET JOURNAL ROUTE INCL. DELETE JOURNAL ROUTE//////////////
@@ -156,8 +156,7 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
    
 ///////////////POST AND MODIFY JOURNAL ENTRIES ROUTE/////////////////
 app.post('/profile/journal', isLoggedIn, (req, res) => {
-let latz = req.body.latz
-console.log(req.body.latz)
+    let latz = req.body.latz
 
 //finds the location where the journal is trying to add
 db.location.findOrCreate({
@@ -195,7 +194,7 @@ db.location.findOrCreate({
     .catch((error) => {
         console.log('error posting journal to database', error)
     })
-   })
+})
 
 /////////////////////UPDATE JOURNAL ROUTE//////////////////
 app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
@@ -215,23 +214,23 @@ app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
 ///////////POLLUTANTS INFO ROUTES////////////
 app.get('/co', (req,res)=> {
     res.render('info/co')
-    })
+})
 
 app.get('/no2', (req,res)=> {
     res.render('info/no2')
-    })
+})
 
 app.get('/o3', (req,res)=> {
     res.render('info/o3')
-    })
+})
 
 app.get('/pm10', (req,res)=> {
     res.render('info/pm10')
-    })
+})
 
 app.get('/so2', (req,res)=> {
     res.render('info/so2')
-    })
+})
 
 
 

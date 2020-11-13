@@ -18,10 +18,10 @@
 
 
 <div class="middleShowContainer">
-<div class="apiContainer">
-<h2>Air Quality Index</h2>
-<div class="showText"><%= data.data.indexes.baqi.aqi %></div>
-<div class="aqiPhoto">
+  <div class="apiContainer">
+    <h2>Air Quality Index</h2>
+    <div class="showText"><%= data.data.indexes.baqi.aqi %></div>
+    <div class="aqiPhoto">
 <% if(data.data.indexes.baqi.aqi>301) { %>
   <img src="https://i.imgur.com/9L6kOxM.png" height='100%' width='100%'>
 <% } else if (data.data.indexes.baqi.aqi>201 && data.data.indexes.baqi.aqi<301) { %>
@@ -35,13 +35,12 @@
 <% } else { %>
   <img src="https://i.imgur.com/VxYGf4t.png" height='100%' width='100%'>
 <% } %>
-</div>
-</div>
+    </div>
+  </div>
 
 <div class="pollutantsContainer">
-<!-- <p>Pollutants</p> -->
-<h2 class="pollutants">Pollutants</h3>
-<div class="showText">Dominant Pollutant: <%= data.data.indexes.baqi.dominant_pollutant %></div>
+  <h2 class="pollutants">Pollutants</h3>
+  <div class="showText">Dominant Pollutant: <%= data.data.indexes.baqi.dominant_pollutant %></div>
 <table>
   <tr>
     <th>Pollutant</th>
@@ -68,19 +67,17 @@
     <td><%= data.data.pollutants.so2.aqi_information.baqi.aqi %></td>
   </tr>
 </table>
-<div class = "favoriteForm">
-<form method="POST" action="/profile">
+  <div class = "favoriteForm">
+  <form method="POST" action="/profile">
     <input hidden type="number" name="zip" value="<%= searchZip %>">
     <input hidden type="number" name="latitude" value="<%= lat  %>">
     <input hidden type="number" name="longitude" value="<%= long %>">
     <button id = "favoritesButton" type="submit">add to favorites</button>
   </form>
-</div>
+  </div>
 
 
 </div>
 </div>
 
-<div class="inhaleLogo">
-  <img src="https://i.imgur.com/3Ymxr7z.png" alt="inhale logo" height= "8%" width="35%">
-</div>
+<div class="inhaleLogo"><img src="https://i.imgur.com/3Ymxr7z.png" alt="inhale logo" height= "8%" width="35%"></div>

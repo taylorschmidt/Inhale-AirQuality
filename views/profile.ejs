@@ -1,5 +1,5 @@
 <div class="profileHeader">
-<h2 id="profileName"><%= currentUser.name %></h2>
+    <h2 id="profileName"><%= currentUser.name %></h2>
 </div>
 
 <h2 class="myLocations">My Locations:</h2>
@@ -11,10 +11,10 @@
             </div>
         <div class="deleteZip">
         <form method="DELETE" action="/profile">
-        <input hidden type="number" name="latitude" value="<%= favorite.latitude %>">
-        <input hidden type="number" name="longitude" value="<%= favorite.longitude %>">
-        <button class="deleteFave" type="submit">delete</button>
+            <input hidden type="number" name="latitude" value="<%= favorite.latitude %>">
+            <input hidden type="number" name="longitude" value="<%= favorite.longitude %>">
+            <button class="deleteFave" type="submit">delete</button>
         </form>
-    </div>
-    </div>        
+        </div>
+        </div>        
     <% }) %>

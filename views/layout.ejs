@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
     <link type="text/css" rel="stylesheet" href="http://localhost:<%=process.env.PORT%>/css/style.css" media="screen,projection"/>
     <title>Inhale</title>
 </head>
@@ -28,13 +26,9 @@
            
         </nav>
     </header>
-    <div class="footer">
-        Air Quality Data Provided by <a href="https://breezometer.com/">Breezometer</a>
-      </div>
+    <div class="footer">Air Quality Data Provided by <a href="https://breezometer.com/">Breezometer</a></div>
     <%- include('partials/alerts') %>
-
     <%- body %>
-    
     <script type="text/javascript" src="materialize.js"></script>
 </body>
 </html>

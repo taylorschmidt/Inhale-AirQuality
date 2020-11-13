@@ -36,7 +36,7 @@
   </div>
   </form>
 </div>
-<!-- use a for each loop to populate journal titles and names with get method -->
+
  <br>
 <div class = "previousEntryContainer">
 <div class="previousEntriesText">
@@ -44,10 +44,12 @@
 
 <% journal.forEach(entry=>{ %>
     <div class="entries">
+      Location: <a href=<%=`/show?zip=${entry.zip}`%>><%=entry.zip%></a>
+      <div>Today, I'm feeling:&nbsp;&nbsp;<strong><%=entry.feeling%></strong></div>
+      
     
-    <div class="actualEntry"><strong><%=entry.title%>: </strong><%=entry.content%></div>
-    <div>Today, I'm feeling: <%=entry.feeling%></div>
-    Location: <a href=<%=`/show?zip=${entry.zip}`%>><%=entry.zip%></a>
+    <div class="actualEntry"><div class="entryTitle"><strong><%=entry.title%></strong> </div><%=entry.content%></div>
+ 
     <div><%=entry.createdAt%></div>
 
     <div class="journalButtons">

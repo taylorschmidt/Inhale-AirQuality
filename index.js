@@ -1,3 +1,4 @@
+//global variables
 require('dotenv').config()
 const express = require('express');
 const app = express()
@@ -45,6 +46,8 @@ app.use((req,res,next)=>{
 
 //controllers middleware that make controllers folder work
 app.use('/auth', require('./controllers/auth.js'))
+
+
 
 //////////////////////HOME ROUTE/////////////////////
 app.get('/', (req,res)=> {

@@ -333,8 +333,9 @@ JOURNAL
 }
 
 .actualEntry{
-    border-bottom: 1px solid black;
-    font-size: 25px;
+    border-top: 1px dashed black;
+    border-bottom: 1px dashed black;
+    font-size: 23px;
 }
 
 .previousEntriesText {
@@ -344,7 +345,13 @@ JOURNAL
 }
 
 .journalButtons {
-    display: inline;
+    
+    display: flex;
+    justify-content: center;
+    margin: 2px;
+
+}
+.entryTitle {
     text-align: center;
 }
 

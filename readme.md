@@ -18,7 +18,7 @@ Check out Inhale on Heroku here.
 
 ### Planning
 ERD
-![Image of ERD](https://i.imgur.com/4DU8218.png)
+![Image of ERD](https://i.imgur.com/xbTz1Pv.png)
 
 #### Wireframe Samples
 

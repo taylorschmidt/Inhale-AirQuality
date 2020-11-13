@@ -4,7 +4,7 @@
 <div class = "newEntryContainer">
   
   <div class="previousEntriesText">
-    <h3>Create a New Entry</h3>
+    <h2>Create a New Entry</h2>
   </div>
 
   
@@ -31,7 +31,7 @@
     <input type="radio" name="feeling" VALUE='poor'>Poor
     <input hidden type="text" name="locationId" value="">
     <div>
-    <input class="deleteFave" type="submit" class="btn btn-primary">
+    <input class="deleteFave" type="submit" value="submit" class="btn btn-primary">
   </div>
   </div>
   </form>
@@ -40,27 +40,27 @@
  <br>
 <div class = "previousEntryContainer">
 <div class="previousEntriesText">
-  <h3>Previous Entries</h3> </div>
+  <h2>Previous Entries</h2> </div>
 
 <% journal.forEach(entry=>{ %>
     <div class="entries">
-    Location: <a href=<%=`/show?zip=${entry.zip}`%>><%=entry.zip%></a>
-    <div>Title: <%=entry.title%></div>
-    <div class="entryText"> Entry: <%=entry.content%></div>
+    
+    <div class="actualEntry"><strong><%=entry.title%>: </strong><%=entry.content%></div>
     <div>Today, I'm feeling: <%=entry.feeling%></div>
+    Location: <a href=<%=`/show?zip=${entry.zip}`%>><%=entry.zip%></a>
     <div><%=entry.createdAt%></div>
 
     <div class="journalButtons">
     <form method="GET" action="/profile/journal/modify">
       <input hidden type="text" name="title" value="<%= entry.title %>">
       <input hidden type="text" name="content" value="<%= entry.content %>">
-      <button class="deleteFave" type="submit">Edit</button>
+      <button class="deleteFave" type="submit">edit</button>
       </form>
     
     <form method="DELETE" action="/profile/journal">
     <input hidden type="text" name="title" value="<%= entry.title %>">
     <input hidden type="text" name="content" value="<%= entry.content %>">
-    <button class="deleteFave" type="submit">Delete</button>
+    <button class="deleteFave" type="submit">delete</button>
     </form>
 
    

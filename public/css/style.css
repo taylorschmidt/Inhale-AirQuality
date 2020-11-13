@@ -7,6 +7,7 @@ body {
     background-size: cover;
     margin: 0;
     padding: 0;
+    color: #1a4863
 }
 
 /*
@@ -64,23 +65,27 @@ HOME PAGE
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    border-radius: 1vw;
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+    border-bottom-right-radius: 0vw;
+    border-bottom-left-radius: 0vw;
     margin: 6vw 10vw 0 10vw;
     background-color: rgba(255, 255, 255, .8);
 }
 
 #logo {
- padding: 0 0 2vw 0;
  width: 35em;
  height: 13em;
 }
 
 #welcomeText {
-    background-color: rgba(255, 255, 255, .2);
-    margin: 1vw 18vw 0 18vw; 
     text-align: center;
     font-size: 1em;
-    color: #246084
+    color: #246084;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 1vw;
+    /* margin-top: -1vw; */
 }
 
 
@@ -97,9 +102,11 @@ HOME PAGE
     text-align: center;
     height:40px;
     width: 90px;
+    font-size: 20px;
     border-radius: 5px;
     background: #246084;
     color: white;
+    border: 1px solid white;
 }
 #submitButtonDiv {
     text-align: center;
@@ -110,7 +117,7 @@ HOME PAGE
 }
 
 #zipTextBox {
-    font-size: 17px;
+    font-size: 20px;
     height: 50px;
     width: 250px;
 }
@@ -132,10 +139,11 @@ SIGN UP/LOGIN PAGES
 .loginSubmit {
     height:40px;
     width: 90px;
-    border:none;
+    font-size: 20px;
+    border-radius: 5px;
     background: #246084;
     color: white;
-    margin: 1vw 0 0 0
+    border: 1px solid white;
 }
 
 .loginSubmit:hover{
@@ -159,7 +167,7 @@ SHOW PAGE
     display:flex;
     align-items: stretch;
     align-content: center;
-    margin: 0vw 20vw 0vw 20vw;
+    margin: 0vw 10vw 10vw 10vw;
     background-color: rgba(255, 255, 255, .8);
 }
 
@@ -207,16 +215,24 @@ table {
  }
 
  #favoritesButton {
-    height:40px;
-    width: 120px;
-    border:none;
+    height:50px;
+    width: 175px;
+    font-size: 20px;
+    border-radius: 5px;
     background: #246084;
     color: white;
-    margin: 1vw 0 0 0
+    border: 1px solid white;
+    margin: 1vw 0 0 0;
  }
 
  #favoritesButton:hover {
      background: grey;
+ }
+
+.inhaleLogo{
+  text-align:center;
+  margin-top:-10vw;
+  margin-bottom: 2vw;
  }
 
 /*
@@ -227,6 +243,7 @@ PROFILE
  
  #profileName {
      text-align: center;
+     color: #1a4863
  }
 
  .favoritesContainer {
@@ -246,13 +263,20 @@ PROFILE
 .deleteFave {
     height:40px;
     width: 90px;
-    border:none;
+    font-size: 20px;
+    border-radius: 5px;
     background: #246084;
     color: white;
+    border: 1px solid white;
 }
 
 .deleteFave:hover{
     background: grey;
+}
+
+.myLocations {
+ margin-left: 1vw;
+ color: #1a4863
 }
 
 /*
@@ -267,8 +291,9 @@ JOURNAL
     align-items: center;
     flex: 0 0 25em;
     align-items: stretch;
-    margin: 7vw 25vw 0 25vw;
+    margin: 0vw 25vw 3vw 25vw;
 }
+
 
 .newEntryContainer {
     border: 2px solid grey;
@@ -278,6 +303,10 @@ JOURNAL
     background-color: rgba(255, 255, 255, .8);
     padding-bottom: 1vw;
     align-items: stretch;
+}
+
+.newEntryContainer * {
+    padding: 2px;
 }
 
 #journalTitle {
@@ -299,7 +328,13 @@ JOURNAL
 
 .entries {
     text-align: left;
+    padding-left: 1px;
     border: 2px solid grey;
+}
+
+.actualEntry{
+    border-bottom: 1px solid black;
+    font-size: 25px;
 }
 
 .previousEntriesText {
@@ -313,11 +348,20 @@ JOURNAL
     text-align: center;
 }
 
-.deleteFave {
-    margin: 1px;
+
+.updateJournalButton {
+    height:45px;
+    width: 150px;
+    font-size: 20px;
+    border-radius: 5px;
+    background: #246084;
+    color: white;
+    border: 1px solid white;
 }
 
-
+.updateJournalButton:hover {
+    background: gray
+}
 
 /* 
 ################
@@ -356,6 +400,10 @@ POLLUTANT PAGES
 .pollTitle {
     font-size: 4vw;
 }
+.pollInfo {
+    margin-left: 12vw;
+    margin-right: 12vw;
+}
 
 
 /* 
@@ -367,18 +415,37 @@ PHONE ADJUSTMENTS
 @media only screen and (max-width: 600px) {
     #logo {
         height: 125px;
-        width: 250px;
+        width: 290px;
     }
     #zipTextBox {
         height: 50px;
         width: 175px;
     }
-    #THEFORM{
-        margin:-20vw;
-    }
+   
     #welcomeText{
         margin: 0 auto;
         background-color: rgba(255, 255, 255, 0);
+    }
+
+    .middleShowContainer {
+        display: flex;
+        flex-direction: column;
+    }
+    #welcomeText {
+        padding: 0;
+        margin-top: 1vw;
+    }
+    .journalContainer {
+        margin: 0vw 10vw 3vw 10vw;
+    }
+    #journalTitle {
+        width: 65vw;
+        height: 2vw;
+    }
+    
+    #journalTextArea {
+        width: 65vw;
+        height: 20vw;
     }
 }
 

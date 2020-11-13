@@ -99,12 +99,14 @@ app.get('/profile', isLoggedIn, (req, res)=>{
  
 ///////////////POST FAVORITE LOCATIONS ROUTE/////////////////
 app.post('/profile', isLoggedIn, (req, res) => {
-    db.location.create({
-      userId: req.user.id,
-      zip: req.body.zip,
-      latitude: req.body.latitude,
-      longitude: req.body.longitude,
-    })
+    db.location.findOrCreate({
+        where: {
+        userId: req.user.id,
+        zip: req.body.zip,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude
+        }
+      })
     .then((post) => {
       res.redirect('/profile')
     })
@@ -114,7 +116,7 @@ app.post('/profile', isLoggedIn, (req, res) => {
   })
 
 
-///////////GET JOURNAL ROUTE INCL. DELETE JOURNAL ROUTE//////////////
+/////////////////GET JOURNAL ROUTE INCL. DELETE JOURNAL ROUTE//////////////
 app.get('/profile/journal', isLoggedIn, (req, res)=>{
         db.location.findAll({
             where: {

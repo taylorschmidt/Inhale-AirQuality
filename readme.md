@@ -14,16 +14,41 @@ Check out Inhale on Heroku here.
 - Breezeometer API
 - ZipCode API
 
-## Process
+## How To Set Up App
+1. Obtain API Key from https://breezometer.com/
+2. Obtain API Key from http://www.zipcodeapi.com/index.php
+3. Git clone this project
+4. `npm i` in the terminal of the root directory for the project
+5. Set up .env and assign:
+- `SECRETSESSION="Your text here"`
+- `PORT="Your port here"`
+6. Setup Sequelize Database
+- Run sequelize init to get a configuration file for connetions
+- Modify config file to be proper connections
+- Run sequelize db:create to create three databases in ERD file.
+- Run sequelize db:migrate to obtain database tables
+7. Run `nodemon`
+
+## How to Use App
+1. Create a User Account by clicking "sign up"
+2. Search for a zipcode
+3. View air quality information and learn more about specific pollutants by clicking on their chemical formulas
+4. Save locations to your profile
+5. Once a location is saved, you can create a journal entry about your personal health's reaction to that zip code's air quality conditions
+6. After creating a journal entry, click "edit" to modify that entry
+
+## Creation Process
 
 ### Planning
 ERD
 ![Image of ERD](https://i.imgur.com/xbTz1Pv.png)
 
 #### Wireframe Samples
-
+Home Page
 ![HomePageImage](https://i.imgur.com/eYg8BNp.png)
+Air Quality Show Page
 ![ShowAirQuality](https://i.imgur.com/dcwjuE6.png)
+Journal Page
 ![JournalEntries](https://i.imgur.com/NyeAGXI.png)
 
 ### Sprint 1: Setting up Application and Adding APIs

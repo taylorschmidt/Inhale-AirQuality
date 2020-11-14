@@ -443,7 +443,7 @@ PHONE ADJUSTMENTS
         margin-top: 1vw;
     }
     .journalContainer {
-        margin: 0vw 10vw 3vw 10vw;
+        margin: 0vw 10vw 5vw 10vw;
     }
     #journalTitle {
         width: 65vw;
@@ -453,6 +453,9 @@ PHONE ADJUSTMENTS
     #journalTextArea {
         width: 65vw;
         height: 20vw;
+    }
+    .pollTitle {
+        font-size: 8vw;
     }
 }
 

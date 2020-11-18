@@ -1,19 +1,19 @@
 <div class="topShowContainer">
-<h1>Air Quality in <%=searchZip%></h1>
+  <h1>Air Quality in <%=searchZip%></h1>
 
-<% if (data.data.indexes.baqi.aqi>201) { %>
-  <img src="https://i.imgur.com/pUXaroN.png" height='9%' width='9%'>
-<% } else if (data.data.indexes.baqi.aqi>150 && data.data.indexes.baqi.aqi<201) { %>
-  <img src="https://i.imgur.com/dNw9BG9.png" height='9%' width='9%'>
-<% } else if (data.data.indexes.baqi.aqi>100 && data.data.indexes.baqi.aqi<151) { %>
-  <img src="https://i.imgur.com/jCm33bW.png" height='9%' width='9%'>
-<% } else if (data.data.indexes.baqi.aqi>50 && data.data.indexes.baqi.aqi<101) { %>
-  <img src="https://i.imgur.com/FXWho6U.png" height='9%' width='9%'>
-<% } else { %>
-  <img src="https://i.imgur.com/hKVYSR1.png" height='9%' width='9%'>
-<% } %>
+  <% if (data.data.indexes.baqi.aqi>201) { %>
+    <img src="https://i.imgur.com/pUXaroN.png" height='9%' width='9%'>
+  <% } else if (data.data.indexes.baqi.aqi>150 && data.data.indexes.baqi.aqi<201) { %>
+    <img src="https://i.imgur.com/dNw9BG9.png" height='9%' width='9%'>
+  <% } else if (data.data.indexes.baqi.aqi>100 && data.data.indexes.baqi.aqi<151) { %>
+    <img src="https://i.imgur.com/jCm33bW.png" height='9%' width='9%'>
+  <% } else if (data.data.indexes.baqi.aqi>50 && data.data.indexes.baqi.aqi<101) { %>
+    <img src="https://i.imgur.com/FXWho6U.png" height='9%' width='9%'>
+  <% } else { %>
+    <img src="https://i.imgur.com/hKVYSR1.png" height='9%' width='9%'>
+  <% } %>
 
-<p><%= data.data.indexes.baqi.category %></p>
+  <p><%= data.data.indexes.baqi.category %></p>
 </div>
 
 

@@ -38,8 +38,10 @@ header {
         color: #f2f2f2;
         text-align: center;
         padding: 2vw;
-        text-decoration: none;
+        text-transform: lowercase;
         font-size: 1.5em;
+        text-decoration: none;
+
 }
 #signupButton:hover, #homeButton:hover, #loginButton:hover, #logoutButton:hover, #profileButton:hover {
     background-color: grey

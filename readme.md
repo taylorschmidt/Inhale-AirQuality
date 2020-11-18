@@ -77,7 +77,7 @@ My next step was to create the routes as seen below:
 |`"/profile/journal"` | GET | READ | `journal` | Displays user's written journal entries
 |`"/profile/journal"` | POST | CREATE | `journal` | Creates user's journal entry
 |`"/profile/journal"` | GET | DELETE | `journal` | Deletes user's journal entry
-|`"/profile/journal/modify"` | GET | UPDATE | `journal` | Allows for editing of user's journal entry
+|`"/profile/journal/modify"` | PUT | UPDATE | `journal` | Allows for editing of user's journal entry
 |`"/co"` | GET | READ | N/A | Dislays information about pollutant
 
 ### Sprint #4: Styling and Personalization

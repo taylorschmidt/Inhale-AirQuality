@@ -59,12 +59,14 @@ app.get('/show', (req,res)=> {
     let searchZip = req.query.zip 
     axios.get(`https://www.zipcodeapi.com/rest/1uuXmYig9EYOlED4Xvk1QF7mpLfFXzzR7aNijQPIrwletSFWfFgrkSDSHt6yrAxJ/info.json/${searchZip}/degrees`)
     .then((response)=> {
+        console.log("HELLOOOOO", response)
+        let city = response.data.city
         let lat = response.data.lat
         let long = response.data.lng
         axios.get(`https://api.breezometer.com/air-quality/v2/current-conditions?lat=${lat}&lon=${long}&key=74bb9e59084046568b581405e452edb7&features=breezometer_aqi,local_aqi,health_recommendations,sources_and_effects,pollutants_concentrations,pollutants_aqi_information&metadata=true`)
     .then((response)=>{
         let data = response.data
-        res.render('show', {data: data, lat:lat, long:long, searchZip:searchZip})
+        res.render('show', {data: data, lat:lat, long:long, searchZip:searchZip, city:city})
     })
     .catch(err=>{
         console.log('API error:', err)

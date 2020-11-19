@@ -59,7 +59,7 @@
       <button class="deleteFave" type="submit">edit</button>
       </form>
     
-    <form method="POST" action="/profile/journal//_method=DELETE">
+    <form method="POST" action="/profile/journal/?_method=DELETE">
     <input hidden type="text" name="title" value="<%= entry.title %>">
     <input hidden type="text" name="content" value="<%= entry.content %>">
     <button class="deleteFave" type="submit">delete</button>

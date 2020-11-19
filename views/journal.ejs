@@ -13,7 +13,7 @@
       <label>Choose a Favorited Location:</label>
       <select name='latz'>
         <% location.forEach(element=>{ %>
-            <option value=<%=element.zip%>><%=element.zip%></option>
+            <option value=<%=element.zips%>><%=element.zips%></option>
           <% }) %>
     </select>
   </div>
@@ -44,7 +44,7 @@
 
 <% journal.forEach(entry=>{ %>
     <div class="entries">
-      Location: <a href=<%=`/show?zip=${entry.zip}`%>><%=entry.zip%></a>
+      Location: <a href=<%=`/show?zip=${entry.zips}`%>><%=entry.zips%></a>
       <div>Today, I'm feeling:&nbsp;&nbsp;<strong><%=entry.feeling%></strong></div>
       
     

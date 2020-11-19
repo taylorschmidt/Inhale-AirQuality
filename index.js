@@ -183,15 +183,15 @@ app.post('/profile/journal', isLoggedIn, (req, res) => {
 //finds the location where the journal is trying to add
 db.location.findOrCreate({
     where:{
-        userId: req.user.id, zip: latz
+        userId: req.user.id, zips: latz
     }
 }).then(function([location, created]) {
     db.journal.findOrCreate({
-        where: {title: req.body.title, content: req.body.content, userId: req.user.id, zip: latz, feeling: req.body.feeling}
+        where: {title: req.body.title, content: req.body.content, userId: req.user.id, zips: latz, feeling: req.body.feeling}
         //adds journal to that location, creating locationId in the journals model
     }).then(function([journal,created]){
         location.addJournal(journal).then(function(relationInfo) {
-            console.log(journal.title, "added to", location.zip)
+            console.log(journal.title, "added to", location.zips)
         })
         res.redirect('/profile/journal')
     })

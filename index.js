@@ -247,7 +247,9 @@ app.get('/co', (req,res)=> {
 })
 
 app.get('/no2', (req,res)=> {
-    res.render('info/no2')
+    res.render('info/no2').catch((error) => {
+        console.log('error updating journal', error)
+})
 })
 
 app.get('/o3', (req,res)=> {

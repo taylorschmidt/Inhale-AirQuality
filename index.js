@@ -138,7 +138,7 @@ app.post('/profile', isLoggedIn, (req, res) => {
 })
 
 
-/////////////////GET JOURNAL ROUTE INCL. DELETE JOURNAL ROUTE//////////////
+/////////////////GET JOURNAL ROUTE //////////////
 app.get('/profile/journal', isLoggedIn, (req, res)=>{
         db.location.findAll({
             where: {
@@ -154,9 +154,15 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
                })
         .then(journal=>{
             res.render('journal', {location: location, journal:journal})
+    }).catch(err=>{
+        console.log('ERROR HERE:', err)
     })
-    let deleteTitle = req.query.title
-    let deleteContent = req.query.content
+})
+
+////////////DELETE JOURNAL ROUTE//////////////////
+app.delete('/profile/journal', isLoggedIn, (req,res)=>{
+    let deleteTitle = req.body.title
+    let deleteContent = req.body.content
     db.journal.destroy({
          where: {
                 userId: req.user.id,
@@ -172,8 +178,6 @@ app.get('/profile/journal', isLoggedIn, (req, res)=>{
         })
     })
 })
-   
-///////////////POST AND MODIFY JOURNAL ENTRIES ROUTE/////////////////
 app.post('/profile/journal', isLoggedIn, (req, res) => {
     let latz = req.body.latz
 
@@ -192,28 +196,35 @@ db.location.findOrCreate({
         })
         res.redirect('/profile/journal')
     })
+}).catch(err=>{
+    console.log('ERROR HERE:', err)
 })
-    //UPDATE: modify the actual journal database
-    let newTitle = req.body.newTitle
-    let newContent = req.body.newContent
-    let journalId = req.body.journalId
-    let newFeeling = req.body.feeling
-    db.journal.update({
-        title: newTitle,
-        content: newContent,
-        feeling: newFeeling
-    } , {
-        where: {
-            id: journalId
-        }
-    }).then(numRowsChanged=>{
-        console.log('Rows Modified', numRowsChanged)
-        res.redirect('/profile/journal')
-    })
-    .catch((error) => {
-        console.log('error posting journal to database', error)
-    })
 })
+
+app.put('/profile/journal', isLoggedIn, (req,res)=> {
+ //UPDATE: modify the actual journal database
+ let newTitle = req.body.newTitle
+ let newContent = req.body.newContent
+ let journalId = req.body.journalId
+ let newFeeling = req.body.feeling
+ db.journal.update({
+     title: newTitle,
+     content: newContent,
+     feeling: newFeeling
+ } , {
+     where: {
+         id: journalId
+     }
+ }).then(numRowsChanged=>{
+     console.log('Rows Modified', numRowsChanged)
+     res.redirect('/profile/journal')
+ })
+ .catch((error) => {
+     console.log('error posting journal to database', error)
+ })
+})
+
+   
 
 /////////////////////UPDATE JOURNAL ROUTE//////////////////
 app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
@@ -227,9 +238,10 @@ app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
     })
     .then(foundJournal=>{
         res.render('updateJournal', {foundJournal, foundJournal})
+    }).catch((error) => {
+        console.log('error updating journal', error)
     })
 })
-
 ///////////POLLUTANTS INFO ROUTES////////////
 app.get('/co', (req,res)=> {
     res.render('info/co')

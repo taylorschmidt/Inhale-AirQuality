@@ -16,7 +16,7 @@ app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
 //set up style.css
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
 //body parser middleware that makes req.body work
 app.use(express.urlencoded({extended:false}))

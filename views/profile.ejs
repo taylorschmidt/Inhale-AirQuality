@@ -6,13 +6,13 @@
     <% favorites.forEach(favorite => { %>
         <div class="favoritesContainer">
             <div class="faveZip">
-             <a href=<%=`/show?zip=${favorite.zip}`%>>
-             <%= favorite.zip %></a>
+             <a href=<%=`/show?zip=${favorite.zips}`%>>
+             <%= favorite.zips %></a>
             </div>
 
         <div class="deleteZip">
             <form method="POST" action="/profile/?_method=DELETE">
-                <input hidden type="number" name="zip" value="<%= favorite.zip %>">
+                <input hidden type="number" name="zips" value="<%= favorite.zips %>">
                 <input hidden type="number" name="latitude" value="<%= favorite.latitude %>">
                 <input hidden type="number" name="longitude" value="<%= favorite.longitude %>">
                 <button class="deleteFave" type="submit">delete</button>

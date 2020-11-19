@@ -63,7 +63,6 @@ app.get('/show', (req,res)=> {
     let searchZip = req.query.zip 
     axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIP_API}/info.json/${searchZip}/degrees`)
     .then((response)=> {
-        console.log("HELLOOOOO", response)
         let city = response.data.city
         let lat = response.data.lat
         let long = response.data.lng
@@ -95,17 +94,16 @@ app.get('/profile', isLoggedIn, (req, res)=>{
 })
 ////////////////DELETE FAVORITE LOCATION/////////////
 app.delete('/profile', isLoggedIn, (req,res)=>{
-    console.log("!!!!!!!!!!!!!!!!!", req.body)
     let deleteLat = req.body.latitude
     let deleteLong = req.body.longitude
-    let deleteZip = req.body.zip
-    console.log("CLICKED ON ", deleteZip)
+    let deleteZip = req.body.zips
+    console.log("CLICKED ON THIS ZIP CODE TO DELETE ", deleteZip)
     db.location.destroy({
         where: {
             userId: req.user.id,
             latitude: deleteLat,
             longitude: deleteLong,
-            zip: deleteZip
+            zips: deleteZip
         }
     }).then(numRowsDeleted=>{
         console.log('Rows Deleted:', numRowsDeleted)
@@ -121,10 +119,11 @@ app.delete('/profile', isLoggedIn, (req,res)=>{
  
 ///////////////POST FAVORITE LOCATIONS ROUTE/////////////////
 app.post('/profile', isLoggedIn, (req, res) => {
+    console.log('HEREEEEE!!!!!!!!!!!!!!!!!!!', req.body)
     db.location.findOrCreate({
         where: {
         userId: req.user.id,
-        zip: req.body.zip,
+        zips: req.body.zips,
         latitude: req.body.latitude,
         longitude: req.body.longitude
         }

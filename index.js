@@ -94,8 +94,8 @@ app.get('/profile', isLoggedIn, (req, res)=>{
 })
 ////////////////DELETE FAVORITE LOCATION/////////////
 app.delete('/profile', isLoggedIn, (req,res)=>{
-    let deleteLat = req.body.latitude
-    let deleteLong = req.body.longitude
+    let deleteLat = parseInt(req.body.latitude)
+    let deleteLong = parseInt(req.body.longitude)
     let deleteZip = req.body.zips
     console.log("CLICKED ON THIS ZIP CODE TO DELETE ", deleteZip)
     db.location.destroy({
@@ -124,8 +124,8 @@ app.post('/profile', isLoggedIn, (req, res) => {
         where: {
         userId: req.user.id,
         zips: req.body.zips,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude
+        latitude: parseInt(req.body.latitude),
+        longitude: parseInt(req.body.longitude)
         }
       })
     .then((post) => {

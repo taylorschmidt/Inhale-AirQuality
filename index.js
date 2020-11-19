@@ -243,7 +243,7 @@ app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
 })
 ///////////POLLUTANTS INFO ROUTES////////////
 app.get('/co', (req,res)=> {
-    res.render('info/co')
+    res.render('/info/co')
 })
 
 app.get('/no2', (req,res)=> {

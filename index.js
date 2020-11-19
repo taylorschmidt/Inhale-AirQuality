@@ -247,21 +247,21 @@ app.get('/co', (req,res)=> {
 })
 
 app.get('/no2', (req,res)=> {
-    res.render('info/no2').catch((error) => {
+    res.render('/app/views/info/NO2.ejs').catch((error) => {
         console.log('error updating journal', error)
 })
 })
 
 app.get('/o3', (req,res)=> {
-    res.render('info/o3')
+    res.render('/app/views/info/O3.ejs')
 })
 
 app.get('/pm10', (req,res)=> {
-    res.render('info/pm10')
+    res.render('/app/views/info/PM10.ejs')
 })
 
 app.get('/so2', (req,res)=> {
-    res.render('info/so2')
+    res.render('/app/views/info/SO2.ejs')
 })
 
 

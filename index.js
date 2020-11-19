@@ -173,9 +173,9 @@ app.delete('/profile/journal', isLoggedIn, (req,res)=>{
         console.log('Rows Deleted:', numRowsDeleted)
         res.redirect('/profile/journal')
     })
-        .catch(err=>{
+    .catch(err=>{
             console.log('ERROR HERE:', err)
-        })
+    })
     })
 })
 app.post('/profile/journal', isLoggedIn, (req, res) => {

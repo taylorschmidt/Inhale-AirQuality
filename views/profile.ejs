@@ -9,12 +9,15 @@
              <a href=<%=`/show?zip=${favorite.zip}`%>>
              <%= favorite.zip %></a>
             </div>
+
         <div class="deleteZip">
-        <form method="DELETE" action="/profile">
-            <input hidden type="number" name="latitude" value="<%= favorite.latitude %>">
-            <input hidden type="number" name="longitude" value="<%= favorite.longitude %>">
-            <button class="deleteFave" type="submit">delete</button>
-        </form>
+            <form method="POST" action="/profile/?_method=DELETE">
+                <input hidden type="number" name="zip" value="<%= favorite.zip %>">
+                <input hidden type="number" name="latitude" value="<%= favorite.latitude %>">
+                <input hidden type="number" name="longitude" value="<%= favorite.longitude %>">
+                <button class="deleteFave" type="submit">delete</button>
+            </form>
         </div>
+
         </div>        
     <% }) %>

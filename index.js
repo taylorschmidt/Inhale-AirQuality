@@ -9,7 +9,10 @@ const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const axios = require('axios')
 let db = require('./models');
+const methodOverride = require('method-override')
 
+
+app.use(methodOverride('_method'))
 
 //setup ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -20,6 +23,7 @@ app.use(express.static(__dirname + '/public'))
 
 //body parser middleware that makes req.body work
 app.use(express.urlencoded({extended:false}))
+app.use(methodOverride('_method'))
 
 //session middleware
 app.use(session({
@@ -85,18 +89,34 @@ app.get('/profile', isLoggedIn, (req, res)=>{
     .then(favorites => {
         res.render('profile.ejs', {favorites: favorites});
       })
-    let deleteLat = req.query.latitude
-    let deleteLong = req.query.longitude
+      .catch(err=>{
+        console.log('Profile GET Route Error:', err)
+    })
+})
+////////////////DELETE FAVORITE LOCATION/////////////
+app.delete('/profile', isLoggedIn, (req,res)=>{
+    console.log("!!!!!!!!!!!!!!!!!", req.body)
+    let deleteLat = req.body.latitude
+    let deleteLong = req.body.longitude
+    let deleteZip = req.body.zip
+    console.log("CLICKED ON ", deleteZip)
     db.location.destroy({
         where: {
             userId: req.user.id,
             latitude: deleteLat,
-            longitude: deleteLong
+            longitude: deleteLong,
+            zip: deleteZip
         }
     }).then(numRowsDeleted=>{
         console.log('Rows Deleted:', numRowsDeleted)
+        res.redirect('/profile')
+    })
+    .catch(err=>{
+        console.log('Profile DELETE Route Error:', err)
     })
 })
+    
+
 
  
 ///////////////POST FAVORITE LOCATIONS ROUTE/////////////////

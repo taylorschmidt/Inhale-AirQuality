@@ -3,7 +3,7 @@
 ## Introduction 
 
 Inhale is an air quality monitoriing application that allows the user to view air quality and pollution data in their area. Users can create accounts to store favorite locations, journal about their health symptoms, and even learn how to reduce their environmental impact. 
-Check out Inhale on Heroku here.
+Check out Inhale on Heroku [here](https://inhale-air.herokuapp.com).
 
 ## Technology
 

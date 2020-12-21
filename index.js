@@ -61,15 +61,15 @@ app.get('/', (req,res)=> {
 //////////////////////SHOW ROUTE - AXIOS/////////////////////////
 app.get('/show', (req,res)=> {
     let searchZip = req.query.zip 
-    axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIP_API}/info.json/${searchZip}/degrees`)
+    axios.get(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.ZIP_API}&location=${searchZip}`)
     .then((response)=> {
-        let city = response.data.city
-        let lat = response.data.lat
-        let long = response.data.lng
-        axios.get(`https://api.breezometer.com/air-quality/v2/current-conditions?lat=${lat}&lon=${long}&key=${process.env.BREEZE_API}&features=breezometer_aqi,local_aqi,health_recommendations,sources_and_effects,pollutants_concentrations,pollutants_aqi_information&metadata=true`)
-    .then((response)=>{
-        let data = response.data
-        res.render('show', {data: data, lat:lat, long:long, searchZip:searchZip, city:city})
+        let city = response.data.results[0].locations[0].adminArea5
+        let lat = response.data.results[0].locations[0].latLng.lat
+        let long = response.data.results[0].locations[0].latLng.lng
+        axios.get(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=${process.env.BREEZE_API}`)
+        .then((response)=>{
+            let data = response.data
+            res.render('show', {data: data, lat:lat, long:long, searchZip:searchZip, city:city})
     })
     .catch(err=>{
         console.log('API error:', err)
@@ -243,25 +243,23 @@ app.get('/profile/journal/modify', isLoggedIn, (req,res)=>{
 })
 ///////////POLLUTANTS INFO ROUTES////////////
 app.get('/co', (req,res)=> {
-    res.render('/app/views/info/CO.ejs')
+    res.render('info/CO.ejs')
 })
 
 app.get('/no2', (req,res)=> {
-    res.render('/app/views/info/NO2.ejs').catch((error) => {
-        console.log('error updating journal', error)
-})
+    res.render('info/NO2.ejs')
 })
 
 app.get('/o3', (req,res)=> {
-    res.render('/app/views/info/O3.ejs')
+    res.render('info/O3.ejs')
 })
 
 app.get('/pm10', (req,res)=> {
-    res.render('/app/views/info/PM10.ejs')
+    res.render('info/PM10.ejs')
 })
 
 app.get('/so2', (req,res)=> {
-    res.render('/app/views/info/SO2.ejs')
+    res.render('info/SO2.ejs')
 })
 
 

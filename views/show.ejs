@@ -1,36 +1,40 @@
 <div class="topShowContainer">
   <h1>Air Quality in <%=city%></h1>
-
-  <% if (data.data.indexes.baqi.aqi>201) { %>
+  <% if (data.data.current.pollution.aqius>201) { %>
     <img src="https://i.imgur.com/pUXaroN.png" height='9%' width='9%'>
-  <% } else if (data.data.indexes.baqi.aqi>150 && data.data.indexes.baqi.aqi<201) { %>
+    <p>Hazadous Air Quality</p>
+  <% } else if (data.data.current.pollution.aqius>150 && data.data.current.pollution.aqius<201) { %>
     <img src="https://i.imgur.com/dNw9BG9.png" height='9%' width='9%'>
-  <% } else if (data.data.indexes.baqi.aqi>100 && data.data.indexes.baqi.aqi<151) { %>
+    <p>Poor Air Quality</p>
+  <% } else if (data.data.current.pollution.aqius>100 && data.data.current.pollution.aqius<151) { %>
     <img src="https://i.imgur.com/jCm33bW.png" height='9%' width='9%'>
-  <% } else if (data.data.indexes.baqi.aqi>50 && data.data.indexes.baqi.aqi<101) { %>
+    <p> Moderate Air Quality</p>
+  <% } else if (data.data.current.pollution.aqius>50 && data.data.current.pollution.aqius<101) { %>
     <img src="https://i.imgur.com/FXWho6U.png" height='9%' width='9%'>
+    <p>Good Air Quality</p>
   <% } else { %>
     <img src="https://i.imgur.com/hKVYSR1.png" height='9%' width='9%'>
+    <p> Excellent Air Quality</p>
   <% } %>
 
-  <p><%= data.data.indexes.baqi.category %></p>
+  
 </div>
 
 
 <div class="middleShowContainer">
   <div class="apiContainer">
     <h2>Air Quality Index</h2>
-    <div class="showText"><%= data.data.indexes.baqi.aqi %></div>
+    <div class="showText"><%= data.data.current.pollution.aqius %></div>
     <div class="aqiPhoto">
-<% if(data.data.indexes.baqi.aqi>301) { %>
+<% if(data.data.current.pollution.aqius>301) { %>
   <img src="https://i.imgur.com/9L6kOxM.png" height='100%' width='100%'>
-<% } else if (data.data.indexes.baqi.aqi>201 && data.data.indexes.baqi.aqi<301) { %>
+<% } else if (data.data.current.pollution.aqius>201 && data.data.current.pollution.aqius<301) { %>
   <img src="https://i.imgur.com/3QStzrM.png" height='100%' width='100%'>
-<% } else if (data.data.indexes.baqi.aqi>150 && data.data.indexes.baqi.aqi<201) { %>
+<% } else if (data.data.current.pollution.aqius>150 && data.data.current.pollution.aqius<201) { %>
   <img src="https://i.imgur.com/OgTOwa7.png" height='100%' width='100%'>
-<% } else if (data.data.indexes.baqi.aqi>100 && data.data.indexes.baqi.aqi<151) { %>
+<% } else if (data.data.current.pollution.aqius>100 && data.data.current.pollution.aqius<151) { %>
   <img src="https://i.imgur.com/wMjx4s8.png" height='100%' width='100%'>
-<% } else if (data.data.indexes.baqi.aqi>50 && data.data.indexes.baqi.aqi<101) { %>
+<% } else if (data.data.current.pollution.aqius>50 && data.data.current.pollution.aqius<101) { %>
   <img src="https://i.imgur.com/mQ4Lwwt.png" height='100%' width='100%'>
 <% } else { %>
   <img src="https://i.imgur.com/VxYGf4t.png" height='100%' width='100%'>
@@ -40,31 +44,31 @@
 
 <div class="pollutantsContainer">
   <h2 class="pollutants">Pollutants</h3>
-  <div class="showText">Dominant Pollutant: <%= data.data.indexes.baqi.dominant_pollutant %></div>
+  <div class="showText">Dominant Pollutant in <%=city%>: <%= data.data.current.pollution.maincn %></div>
 <table>
   <tr>
-    <th>Pollutant</th>
-    <th>Concentration (ppm)</th>
+    <th>Learn More About Dominant Pollutants</th>
+
   </tr>
   <tr>
     <td><a href="/co">Carbon Monoxide (CO)</a></td>
-    <td><%= data.data.pollutants.co.aqi_information.baqi.aqi %></td>
+ 
   </tr>
   <tr>
     <td><a href="/no2">Nitrogen Dioxide (NO2)</a></td>
-    <td><%=data.data.pollutants.no2.aqi_information.baqi.aqi%></td>
+  
   </tr>
   <tr>
     <td><a href="/o3">Ozone (O3)</a></td>
-    <td><%= data.data.pollutants.o3.aqi_information.baqi.aqi %></td>
+    
   </tr>
   <tr>
     <td><a href="/pm10">Particulate Matter (PM10)</a></td>
-    <td><%= data.data.pollutants.pm10.aqi_information.baqi.aqi %></td>
+   
   </tr>
   <tr>
     <td><a href="/so2">Sulfur Dioxide (SO2)</a></td>
-    <td><%= data.data.pollutants.so2.aqi_information.baqi.aqi %></td>
+    
   </tr>
 </table>
   <div class = "favoriteForm">

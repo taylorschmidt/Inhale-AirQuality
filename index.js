@@ -67,9 +67,6 @@ app.get('/show', (req,res)=> {
         let lat = response.data.results[0].locations[0].latLng.lat
         let long = response.data.results[0].locations[0].latLng.lng
         axios.get(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=${process.env.BREEZE_API}`)
-        .catch(err=>{
-            console.log(err)
-        })
         .then((response)=>{
             let data = response.data
             res.render('show', {data: data, lat:lat, long:long, searchZip:searchZip, city:city})
